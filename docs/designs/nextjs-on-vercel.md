@@ -43,7 +43,7 @@ Three Vercel projects in team `mikefullertons-projects`, region `sfo1`, root dir
 |---|---|---|---|---|
 | `scratchyfish-production` | `DeploymentRepos/scratchyfishwebsite-deployment` | production branch | `scratchyfish.com`, `www.scratchyfish.com` | off |
 | `scratchyfish-staging` | `DeploymentRepos/scratchyfishwebsite-deployment` | staging branch | `staging.scratchyfish.com` | off |
-| `scratchyfish-testing` | `mikefullerton/scratchyfishwebsite` (dev repo) | `testing` (falls back to `main` until it exists) | `testing.scratchyfish.com` | on |
+| `scratchyfish-testing` | `mikefullerton/scratchyfishwebsite` (dev repo) | `testing` (created by `shipr deploy testing`) | `testing.scratchyfish.com` | on |
 
 Why testing links to the dev repo: `.shipr` declares `[environments.testing] repo = "development"`,
 the same arrangement as `fishlamp-testing`.
@@ -63,18 +63,22 @@ the same arrangement as `fishlamp-testing`.
 
 ## DNS (Cloudflare)
 
-Zone `scratchyfish.com` is on Cloudflare. Live now:
+Zone `scratchyfish.com` is on Cloudflare. All records are DNS-only (not proxied):
 
 - `testing` CNAME → `f13237986f033767.vercel-dns-016.com`
 - `staging` CNAME → `ec3fb1bd43e5f4a0.vercel-dns-016.com`
+
+- apex `A` → `216.150.1.1`, `216.150.16.1`
+- `www` CNAME → `fdc972f01c2eebcb.vercel-dns-016.com`; Vercel 308-redirects `www` to the apex
+  (`REDIRECTS` in `tools/provision-vercel.py`).
 
 The `CLOUDFLARE_CLI_HELPER` token can read and write DNS records; `CLOUDFLARE_API_TOKEN` cannot read
 them.
 
 ## Notes and gotchas
 
-- GitHub Pages still builds from `main` `/`. Since the Jekyll sources left `main`, Pages no longer
-  has a site to build — the live apex is still served from Pages' last build until the DNS switch.
+- GitHub Pages was disabled at cutover (2026-11-01); between the merge and the DNS switch the apex
+  served a Pages 404, because Pages built from `main` and the Jekyll sources had left it.
 - The first builds of all three Vercel projects failed with "Root Directory `websites/main` does not
   exist", because the deployment branches still held Jekyll content at the time. That was expected
   and clears once the Next app is shipped to those branches.

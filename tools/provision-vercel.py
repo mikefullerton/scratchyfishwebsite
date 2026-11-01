@@ -52,6 +52,9 @@ ROOT_DIR = "websites/main"
 APEX = "scratchyfish.com"  # takes A records; every other host takes a CNAME
 AUTH_FILE = "~/Library/Application Support/com.vercel.cli/auth.json"
 SUBMODULE_TOKEN = "GH_SUBMODULE_TOKEN"
+# Hosts that permanently redirect (308) to another host instead of serving the site.
+REDIRECTS = {"www.scratchyfish.com": APEX}
+REDIRECT_STATUS = 308
 
 # The three tiers. `previews` maps to previewDeploymentsDisabled (inverted).
 # Every tier deploys the branch named after it, so `env` is also the branch name.
@@ -278,6 +281,31 @@ def add_domain(pid: str, name: str, domain: str, dry: bool) -> None:
         FAILURES.append(f"{name}: domain {domain} failed {code} {err}")
         print(f"      domain {domain} [!! {code} {err}: "
               f"{data.get('error', {}).get('message')}]")
+        return
+    set_redirect(pid, name, domain)
+
+
+def set_redirect(pid: str, name: str, domain: str) -> None:
+    """Make `domain` redirect to its REDIRECTS target, or serve the site if it has none."""
+    want = REDIRECTS.get(domain)
+    want_code = REDIRECT_STATUS if want else None
+    code, data = api("GET", f"/v9/projects/{pid}/domains/{domain}")
+    if code != 200:
+        FAILURES.append(f"{name}: read domain {domain} failed {code}")
+        print(f"      domain {domain} [!! could not read: {code}]")
+        return
+    if data.get("redirect") == want and data.get("redirectStatusCode") == want_code:
+        if want:
+            print(f"      domain {domain} [redirects to {want}, unchanged]")
+        return
+    code, data = api("PATCH", f"/v9/projects/{pid}/domains/{domain}",
+                     {"redirect": want, "redirectStatusCode": want_code})
+    if code == 200:
+        print(f"      domain {domain} [{'redirect → ' + want if want else 'redirect cleared'}]")
+    else:
+        FAILURES.append(f"{name}: redirect {domain} failed {code}")
+        print(f"      domain {domain} [!! redirect {code}: "
+              f"{data.get('error', {}).get('message')}]")
 
 
 def _rank1(entries: list) -> list[str]:
@@ -314,7 +342,8 @@ def report_dns(tiers: list[dict]) -> None:
                 for cname in _rank1(cfg.get("recommendedCNAME") or []):
                     print(f"  {domain:<28} {'CNAME':<6} {cname}")
             existing = (cfg.get("aValues") or []) + (cfg.get("cnames") or [])
-            if existing:
+            # Only a host Vercel calls misconfigured is pointed somewhere else.
+            if existing and cfg.get("misconfigured"):
                 conflicts.append(f"  {domain} currently resolves to "
                                  f"{', '.join(v.rstrip('.') for v in existing)}")
     if conflicts:
