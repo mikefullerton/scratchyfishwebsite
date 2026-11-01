@@ -72,6 +72,13 @@ Zone `scratchyfish.com` is on Cloudflare. All records are DNS-only (not proxied)
 - `www` CNAME → `fdc972f01c2eebcb.vercel-dns-016.com`; Vercel 308-redirects `www` to the apex
   (`REDIRECTS` in `tools/provision-vercel.py`).
 
+Email is Google Workspace (MX `aspmx.l.google.com` + alts, DKIM at `google._domainkey`, DMARC
+`p=quarantine`). SPF, added 2026-11-01: TXT `v=spf1 include:_spf.google.com ~all` — soft fail
+because DMARC already enforces; the website itself sends no mail.
+
+The registrar delegates to Cloudflare (`brenna`/`wilson`). The old GoDaddy zone
+(`ns07/ns08.domaincontrol.com`) still exists but is not authoritative — edits there do nothing.
+
 The `CLOUDFLARE_CLI_HELPER` token can read and write DNS records; `CLOUDFLARE_API_TOKEN` cannot read
 them.
 
