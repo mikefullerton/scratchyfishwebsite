@@ -1,0 +1,11 @@
+# pnpm workspace root for scratchyfish.com.
+#
+# Members are listed explicitly rather than globbed: there is one site
+# (`main`), and a glob like '*' would also sweep in `external/`, which must
+# stay out (see below).
+#
+# Deliberately EXCLUDED:
+#   • external/**  — git submodules; each is its own pnpm workspace, and pnpm
+#                    workspaces cannot nest.
+packages:
+  - 'main'

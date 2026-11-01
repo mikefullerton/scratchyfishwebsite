@@ -1,0 +1,32 @@
+# scratchyfish.com, served locally by the sites CLI at
+# https://scratchyfish.sites.localhost (or https://scratchyfish-<branch>.sites.localhost
+# in a worktree). `sites start` from anywhere in the checkout brings it up,
+# `sites stop` takes it down, and a first start registers this file.
+#
+# One site, so the apex is the whole suite.
+
+name          = "scratchyfish"
+# A worktree gets its own suite named after its branch, so two branches can be
+# up at once without one shadowing the other. Nothing on main.
+auto_suffix   = true
+workspace_dir = "websites"
+apex          = "main"
+
+[sites]
+# Listed rather than discovered: `websites/` also holds the git submodules,
+# several of which declare `next` and would be swept up by a scan.
+list = ["main"]
+
+[dev]
+# The site's own hoisted next binary, on the port the engine assigns. NOT
+# `pnpm dev`, whose script pins 5100: a per-worktree suite needs its own port.
+command  = ["node_modules/.bin/next", "dev", "-p", "{port}"]
+idle_min = 30
+
+[[prepare]]
+name     = "websites pnpm workspace"
+cmd      = ["pnpm", "install", "--frozen-lockfile"]
+cwd      = "websites"
+sentinel = ["websites/main/node_modules/.modules.yaml"]
+lockfile = "websites/pnpm-lock.yaml"
+timeout  = 900

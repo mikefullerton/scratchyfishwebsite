@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "shared_packages": [
+    {
+      "name": "agenticdevelopertoolkit",
+      "path": "websites/external/agenticdevelopertoolkit"
+    },
+    {
+      "name": "whatsnowtoolkit",
+      "path": "websites/external/whatsnowtoolkit"
+    }
+  ],
+  "tiers": [
+    {
+      "name": "site-content",
+      "paths": [
+        "websites/main/src/content/",
+        "websites/main/public/"
+      ],
+      "depends_on": [],
+      "shared": false,
+      "holds": "The band's content, carried over unchanged from the Jekyll site: src/content/data/*.json (site, navigation, albums, bio, photos, videos, friends, shows), src/content/posts/*.md (the news posts, front matter + markdown), and public/assets/images/. Data, not code."
+    },
+    {
+      "name": "site-lib",
+      "paths": [
+        "websites/main/src/lib/",
+        "websites/main/src/styles/"
+      ],
+      "depends_on": [
+        "site-content"
+      ],
+      "shared": false,
+      "holds": "The site's non-UI layer: typed access to the content (content.ts, posts.ts), the Liquid-compatible date and excerpt filters (dates.ts, excerpt.ts), the kramdown-compatible markdown renderer (markdown.ts), SEO metadata and JSON-LD (seo.ts), and style.css, the Jekyll stylesheet verbatim."
+    },
+    {
+      "name": "site-components",
+      "paths": [
+        "websites/main/src/components/"
+      ],
+      "depends_on": [
+        "site-lib"
+      ],
+      "shared": false,
+      "holds": "The site's React components: header, footer, hero/page shell, post and show cards, link lists and icons, the member grid and the photo lightbox."
+    },
+    {
+      "name": "site-app",
+      "paths": [
+        "websites/main/src/app/",
+        "websites/main/"
+      ],
+      "depends_on": [
+        "site-components",
+        "site-lib",
+        "site-content",
+        "website-workspace"
+      ],
+      "shared": false,
+      "holds": "The Next app: App Router routes under src/app/ (one per Jekyll page, the post and member pages, sitemap and robots) and the app's config (package.json, next.config.ts, tsconfig.json, eslint.config.mjs, vercel.json)."
+    },
+    {
+      "name": "website-workspace",
+      "paths": [
+        "websites/tools/",
+        "websites/package.json",
+        "websites/pnpm-workspace.yaml",
+        "websites/pnpm-lock.yaml",
+        "websites/.npmrc"
+      ],
+      "depends_on": [],
+      "shared": false,
+      "holds": "The pnpm workspace root config (package.json, pnpm-workspace.yaml, the lockfile) and build helpers under websites/tools/ (fetch_submodules.py, which Vercel's install step runs). Config, not library code."
+    },
+    {
+      "name": "external-submodules",
+      "paths": [
+        "websites/external/"
+      ],
+      "depends_on": [],
+      "shared": false,
+      "holds": "Git submodule checkouts (agenticdevelopertoolkit, whatsnowtoolkit — see shared_packages). Deliberately outside the pnpm workspace glob since each submodule is its own workspace. Vendored; not edited here."
+    },
+    {
+      "name": "repo-tools",
+      "paths": [
+        "tools/"
+      ],
+      "depends_on": [],
+      "shared": false,
+      "holds": "Repo-level operator scripts run by hand, not by any build: provision-vercel.py, which creates and reconciles the three scratchyfish-* Vercel projects."
+    },
+    {
+      "name": "repo-meta",
+      "paths": [
+        ".claude/",
+        ".shipr",
+        ".sites/",
+        ".abstractr.json",
+        "README.md",
+        ".gitignore",
+        ".gitmodules"
+      ],
+      "depends_on": [],
+      "shared": false,
+      "holds": "Claude Code project config, the shipr deploy config, the sites CLI's local suite config, and repo housekeeping. No code."
+    }
+  ],
+  "rules": {
+    "unmapped_path": "warn"
+  }
+}

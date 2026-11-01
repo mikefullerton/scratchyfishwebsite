@@ -1,0 +1,12 @@
+{
+  "name": "scratchyfish-websites",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "pnpm workspace root for scratchyfish.com. The site builds and deploys on Vercel.",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

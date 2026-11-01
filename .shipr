@@ -1,2 +1,19 @@
-[targets]
-name = "kind:vercel"
+{
+  "build": {
+    "command": "git submodule update --init --recursive && (cd websites && pnpm install --frozen-lockfile --prod=false) && cd websites/main && pnpm build"
+  },
+  "test": {
+    "command": "(cd websites && pnpm install --frozen-lockfile --prod=false && pnpm lint && pnpm typecheck)"
+  },
+  "targets": {
+    "scratchyfish": "vercel"
+  },
+  "adh": {
+    "vercel_team": "mikefullertons-projects"
+  },
+  "environments": {
+    "testing": {
+      "repo": "development"
+    }
+  }
+}

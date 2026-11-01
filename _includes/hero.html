@@ -1,9 +1,0 @@
-<section class="hero" {% if include.image %}style="background-image: url('{% if include.image contains 'http' %}{{ include.image }}{% else %}{{ include.image | relative_url }}{% endif %}')"{% elsif site.data.site.hero_image %}style="background-image: url('{% if site.data.site.hero_image contains 'http' %}{{ site.data.site.hero_image }}{% else %}{{ site.data.site.hero_image | relative_url }}{% endif %}')"{% endif %}>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>{{ include.title | default: site.data.site.title }}</h1>
-    {% if include.subtitle %}
-    <p class="subtitle">{{ include.subtitle }}</p>
-    {% endif %}
-  </div>
-</section>
