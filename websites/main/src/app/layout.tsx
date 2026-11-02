@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 import { SITE_DESCRIPTION, SITE_URL, navigation, site } from '@/lib/content'
 import { musicGroupJsonLd } from '@/lib/seo'
+import { PostHogAnalytics } from '@agenticdevelopertoolkit/analytics'
 import '@/styles/style.css'
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main>{children}</main>
 
         <SiteFooter title={site.title} social={site.social} />
+        <PostHogAnalytics />
       </body>
     </html>
   )
