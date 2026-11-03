@@ -1,6 +1,6 @@
 [submodule "websites/external/agenticdevelopertoolkit"]
 	path = websites/external/agenticdevelopertoolkit
-	url = https://github.com/agenticdevelopmentstudio/adtoolkit.git
+	url = https://github.com/agenticdevelopmentstudio/adhsdk.git
 [submodule "websites/external/whatsnowtoolkit"]
 	path = websites/external/whatsnowtoolkit
 	url = https://github.com/fishlampdesign/whatsnowtoolkit.git
