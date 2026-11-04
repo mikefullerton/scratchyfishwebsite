@@ -5,5 +5,5 @@
   ],
   "framework": "nextjs",
   "installCommand": "python3 ../tools/fetch_submodules.py && cd .. && pnpm install --frozen-lockfile --prod=false",
-  "buildCommand": "python3 ../external/agenticdevelopertoolkit/packages/web/packages/site-template/tools/build-site.py"
+  "buildCommand": "python3 ../external/adhsdk/packages/web/packages/site-template/tools/build-site.py"
 }

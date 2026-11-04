@@ -11,8 +11,8 @@ importers:
   main:
     dependencies:
       '@agenticdevelopertoolkit/analytics':
-        specifier: link:../external/agenticdevelopertoolkit/packages/web/packages/analytics
-        version: link:../external/agenticdevelopertoolkit/packages/web/packages/analytics
+        specifier: link:../external/adhsdk/packages/web/packages/analytics
+        version: link:../external/adhsdk/packages/web/packages/analytics
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3

@@ -1,5 +1,5 @@
-[submodule "websites/external/agenticdevelopertoolkit"]
-	path = websites/external/agenticdevelopertoolkit
+[submodule "websites/external/adhsdk"]
+	path = websites/external/adhsdk
 	url = https://github.com/agenticdevelopmentstudio/adhsdk.git
 [submodule "websites/external/whatsnowtoolkit"]
 	path = websites/external/whatsnowtoolkit

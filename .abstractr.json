@@ -2,8 +2,8 @@
   "version": 1,
   "shared_packages": [
     {
-      "name": "agenticdevelopertoolkit",
-      "path": "websites/external/agenticdevelopertoolkit"
+      "name": "adhsdk",
+      "path": "websites/external/adhsdk"
     },
     {
       "name": "whatsnowtoolkit",

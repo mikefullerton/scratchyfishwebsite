@@ -4,7 +4,7 @@
 Vercel fetches only submodules that are publicly readable over HTTPS during its clone
 step (https://vercel.com/docs/builds/build-features); a private one arrives empty and
 the clone log says "Failed to fetch one or more git submodules". agenticdevelopertoolkit
-is private, so every site that reaches it through `external/agenticdevelopertoolkit`
+is private, so every site that reaches it through `external/adhsdk`
 would build against an empty directory.
 
 Run this FIRST in the Vercel install command, before `pnpm install` resolves any
