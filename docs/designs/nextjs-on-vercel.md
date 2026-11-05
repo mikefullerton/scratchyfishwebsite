@@ -28,7 +28,7 @@ design work is later phases.
 - **Parity:** a check against a snapshot of the live Jekyll site matched text, titles, meta, links
   and images on all 29 pages. The one deliberate difference is the empty lightbox `<img>`.
 - **Submodules** under `websites/external/` (outside the pnpm workspace glob — each is its own
-  workspace), the same ones fishlamp uses: `agenticdevelopertoolkit` and `whatsnowtoolkit`
+  workspace), the same ones fishlamp uses: `adhsdk` and `whatsnowtoolkit`
   (private, `fishlampdesign/whatsnowtoolkit`). Vercel's install step runs
   `websites/tools/fetch_submodules.py`, which authenticates with the `GH_SUBMODULE_TOKEN` env var.
 - **Local serving:** `.sites/suite.toml` registers the site with the `sites` CLI

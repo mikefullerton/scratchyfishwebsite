@@ -14,7 +14,7 @@
     "test": "node --experimental-strip-types --test 'src/**/*.test.ts'"
   },
   "dependencies": {
-    "@agenticdevelopertoolkit/analytics": "link:../external/adhsdk/packages/web/packages/analytics",
+    "@adh-sdk/analytics": "link:../external/adhsdk/packages/web/packages/analytics",
     "gray-matter": "^4.0.3",
     "marked": "^18.1.2",
     "marked-smartypants": "^1.1.12",

@@ -16,7 +16,7 @@ importers:
 
   main:
     dependencies:
-      '@agenticdevelopertoolkit/analytics':
+      '@adh-sdk/analytics':
         specifier: link:../external/adhsdk/packages/web/packages/analytics
         version: link:../external/adhsdk/packages/web/packages/analytics
       gray-matter:

@@ -7,7 +7,7 @@ Last updated 2026-11-01, after the production cutover. Design:
 
 - Site ported from Jekyll to Next 16 on the family stack (`websites/main`), with content parity
   checked on all 29 pages.
-- Submodules `agenticdevelopertoolkit` and `whatsnowtoolkit` are under `websites/external/`.
+- Submodules `adhsdk` and `whatsnowtoolkit` are under `websites/external/`.
 - Vercel projects `scratchyfish-production`, `-staging` and `-testing` are provisioned by
   `tools/provision-vercel.py`, including domains, `DEPLOYMENT_ENV` and `GH_SUBMODULE_TOKEN`.
 - `.shipr` declares the Vercel target and the testing environment.

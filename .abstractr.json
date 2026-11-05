@@ -79,7 +79,7 @@
       ],
       "depends_on": [],
       "shared": false,
-      "holds": "Git submodule checkouts (agenticdevelopertoolkit, whatsnowtoolkit — see shared_packages). Deliberately outside the pnpm workspace glob since each submodule is its own workspace. Vendored; not edited here."
+      "holds": "Git submodule checkouts (adhsdk, whatsnowtoolkit — see shared_packages). Deliberately outside the pnpm workspace glob since each submodule is its own workspace. Vendored; not edited here."
     },
     {
       "name": "repo-tools",
