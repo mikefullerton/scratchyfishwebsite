@@ -8,5 +8,13 @@
   "scripts": {
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck"
+  },
+  "pnpm": {
+    "overrides": {
+      "minimatch@>=10.0.0 <11.0.1": "^11.0.1",
+      "next@>=16.0.0 <16.4.1": "^16.4.1",
+      "postcss@>=8.0.0 <8.5.23": "^8.5.23",
+      "sharp@>=0.34.0 <0.35.5": "^0.35.5"
+    }
   }
 }

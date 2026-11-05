@@ -18,13 +18,13 @@
     "gray-matter": "^4.0.3",
     "marked": "^18.1.2",
     "marked-smartypants": "^1.1.12",
-    "next": "16.2.9",
+    "next": "16.4.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@next/eslint-plugin-next": "16.2.9",
+    "@next/eslint-plugin-next": "16.4.5",
     "@types/node": "^22.10.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
