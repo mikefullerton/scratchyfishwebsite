@@ -32,7 +32,7 @@ owner-triggered: shipping to the deployment repo and the production DNS cutover.
   relinked.
 - **`GH_SUBMODULE_TOKEN` was copied from an existing Vercel project's env, not minted.** The owner
   asked for it to come "from the sf vercel project". It was verified against the private
-  whatsnowtoolkit repo and never printed.
+  temporaltoolkit repo and never printed.
 - **Provisioning is a repeatable Python script** (`tools/provision-vercel.py`), not one-off
   API calls. It is idempotent, which lets the testing-branch fix be a re-run.
 - **`.shipr` is JSON with a real Vercel target.** It replaced the placeholder `name = "kind:vercel"`

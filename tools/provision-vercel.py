@@ -25,7 +25,7 @@ cannot tell them apart.
 It is a secret, so it is never written here: pass it in the environment and it
 is upserted as an encrypted variable on every project. Run without it, a project
 that already has it keeps it, and one that does not is reported as a failure —
-its builds cannot fetch websites/external/whatsnowtoolkit.
+its builds cannot fetch websites/external/temporaltoolkit.
 
 Idempotent: existing projects are reconciled in place, and settings are PATCHed
 only when they actually differ. Exits non-zero if anything could not be fully
